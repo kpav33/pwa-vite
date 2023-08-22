@@ -4,6 +4,8 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+import styles from "../styles/Home.module.scss"
+
 // https://adueck.github.io/blog/caching-everything-for-totally-offline-pwa-vite-react/
 // yarn create vite my-pwa --template react
 // yarn add vite-plugin-pwa -D
@@ -16,6 +18,8 @@ import './App.css'
 // https://vite-pwa-org.netlify.app/guide/, https://css-tricks.com/vitepwa-plugin-offline-service-worker/ => Useful PWA explanations
 
 // Use @vite-pwa/assets-generator to generate the necessary image assets check the https://vite-pwa-org.netlify.app/assets-generator/ to see how it works
+
+// Sass and CSS modules work out of the box, just install sass yarn add -D sass and use them as you would otherwise
 
 function App() {
   const [count, setCount] = useState(0);
@@ -36,7 +40,7 @@ function App() {
         </button>
       </div>
       <div>
-        <h1>Hello PWA app!</h1>
+        <h1 className={styles.testStyle}>Hello PWA app!</h1>
       </div>
     </>
   )
