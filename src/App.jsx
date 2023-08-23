@@ -93,10 +93,20 @@ function App() {
 
     // console.log(window.matchMedia("(display-mode: standalone)"));
 
-    if (
-      (!window.matchMedia("(display-mode: standalone)").matches && isSafari) ||
-      isFirefox
-    ) {
+    // if (window.navigator.standalone) {
+    //   // The app is launched from the home screen (PWA is installed)
+    // } else {
+    //   // The app is running in the browser
+    // }
+
+    // if (
+    //   (!window.matchMedia("(display-mode: standalone)").matches && isSafari) ||
+    //   isFirefox
+    // ) {
+    //   setShowAddToHomeMessage(true);
+    // }
+
+    if (isSafari || isFirefox) {
       setShowAddToHomeMessage(true);
     }
 
