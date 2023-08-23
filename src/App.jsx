@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -31,6 +31,47 @@ import ErrorPage from "./components/Error/ErrorPage";
 
 function App() {
   const [count, setCount] = useState(0);
+
+  // Add to Home screen message code
+  const [showAddToHomeScreen, setShowAddToHomeScreen] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (event) => {
+      event.preventDefault();
+      // Check if the app is already installed
+      if (!window.matchMedia("(display-mode: standalone)").matches) {
+        setShowAddToHomeScreen(true);
+        setDeferredPrompt(event);
+      }
+    };
+
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt
+      );
+    };
+  }, []);
+
+  const handleAddToHomeScreen = () => {
+    setShowAddToHomeScreen(false);
+    if (deferredPrompt) {
+      // Trigger the installation prompt
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === "accepted") {
+          console.log("User accepted the A2HS prompt");
+        } else {
+          console.log("User dismissed the A2HS prompt");
+        }
+      });
+      setDeferredPrompt(null);
+      setShowAddToHomeScreen(false);
+    }
+  };
 
   return (
     <>
@@ -73,6 +114,13 @@ function App() {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
+      {/* Add to home screen message */}
+      {showAddToHomeScreen && (
+        <div className={styles.popup}>
+          <p>Add this app to your home screen for a better experience!</p>
+          <button onClick={handleAddToHomeScreen}>Add to Home Screen</button>
+        </div>
+      )}
     </>
   );
 }
