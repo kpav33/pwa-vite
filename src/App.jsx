@@ -1,10 +1,18 @@
 /* eslint-disable react/jsx-no-target-blank */
 import { useState } from "react";
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
-import styles from "../styles/Home.module.scss"
+import styles from "../styles/Home.module.scss";
+
+import { Route, Routes, Link } from "react-router-dom";
+
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Hi from "./pages/hi/[name]";
+import ErrorPage from "./components/Error/ErrorPage";
 
 // https://adueck.github.io/blog/caching-everything-for-totally-offline-pwa-vite-react/
 // yarn create vite my-pwa --template react
@@ -42,8 +50,31 @@ function App() {
       <div>
         <h1 className={styles.testStyle}>Hello PWA app!</h1>
       </div>
+      {/* If using React Router there should only really be the router Routes code in the App.js file, for testing and simplicity sake the above code is kept in this file, but this shouldn't be repeated unless for a good reason in real projects  */}
+      <div className={styles.nav}>
+        <h3>React Router</h3>
+        <nav>
+          <ul>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
+            <Link to="/hi/user">Hi user</Link>
+          </ul>
+        </nav>
+
+        {/* Defining routes path and rendering components as element */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/hi">
+            <Route path=":name" element={<Hi />} />
+          </Route>
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

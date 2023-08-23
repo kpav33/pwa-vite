@@ -1,8 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+// import React from 'react'
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
 import { registerSW } from "virtual:pwa-register";
+import { BrowserRouter } from "react-router-dom";
 
 // add this to prompt for a refresh
 const updateSW = registerSW({
@@ -24,8 +25,12 @@ const updateSW = registerSW({
 //   },
 // }
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+// https://reactrouter.com/en/main/start/tutorial => More advanced React Router tutorial
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  // <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>,
-)
+  </BrowserRouter>
+  // </React.StrictMode>,
+);
