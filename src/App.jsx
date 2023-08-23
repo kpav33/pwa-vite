@@ -36,6 +36,10 @@ function App() {
   const [showAddToHomeScreen, setShowAddToHomeScreen] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState(null);
 
+  // console.log(deferredPrompt);
+
+  // https://developer.mozilla.org/en-US/docs/Web/API/BeforeInstallPromptEvent#browser_compatibility
+  // Safari, Firefox don't support this event so the only solution seem to be to check whether user is using safari or firefox and show them a message that they should add it to their home screen, but the adding must be done manually
   useEffect(() => {
     const handleBeforeInstallPrompt = (event) => {
       event.preventDefault();
@@ -72,6 +76,41 @@ function App() {
       setShowAddToHomeScreen(false);
     }
   };
+
+  // Alternative for Firefox and Safari, since they don't support beforeinstallprompt event
+  const [showAddToHomeMessage, setShowAddToHomeMessage] = useState(false);
+
+  useEffect(() => {
+    const isSafari =
+      /iPhone|iPad|iPod/.test(navigator.userAgent) &&
+      !navigator.userAgent.includes("Chrome");
+    const isFirefox =
+      navigator.userAgent.includes("Firefox") &&
+      /Android|iPhone|iPad|iPod/.test(navigator.userAgent);
+
+    // console.log(navigator.userAgent);
+    // console.log(isSafari, isFirefox);
+
+    if (isSafari || isFirefox) {
+      setShowAddToHomeMessage(true);
+    }
+  }, []);
+
+  // Check if user is visiting the website from a mobile browser
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent;
+
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(
+        userAgent
+      ) &&
+      !/Tablet|Tablet|Pad|PlayBook|RIM/i.test(userAgent)
+    ) {
+      setIsMobile(true);
+    }
+  }, []);
 
   return (
     <>
@@ -119,6 +158,41 @@ function App() {
         <div className={styles.popup}>
           <p>Add this app to your home screen for a better experience!</p>
           <button onClick={handleAddToHomeScreen}>Add to Home Screen</button>
+          <button
+            style={{ marginLeft: "15px" }}
+            onClick={() => setShowAddToHomeScreen(false)}
+          >
+            Close
+          </button>
+        </div>
+      )}
+      {showAddToHomeMessage && (
+        <div className={styles.popup}>
+          <p>To use this app offline, add it to your home screen:</p>
+          <ol>
+            <li>
+              For Safari: Tap the Share button at the bottom of the Safari
+              window, scroll down, and tap &quot;Add to Home Screen&quot;.
+            </li>
+            <li>
+              For Firefox: Tap the three dots menu at the bottom of the Firefox
+              window, then tap &quot;Page&quot; and &quot;Add to Home
+              Screen&quot;.
+            </li>
+          </ol>
+          <button onClick={() => setShowAddToHomeMessage(false)}>Close</button>
+        </div>
+      )}
+      {!isMobile && (
+        <div
+          style={{
+            background: "salmon",
+            padding: "10px",
+            textAlign: "center",
+            marginTop: "20px",
+          }}
+        >
+          Please visit this website on your phone to install the app.
         </div>
       )}
     </>
