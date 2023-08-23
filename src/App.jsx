@@ -91,9 +91,18 @@ function App() {
     // console.log(navigator.userAgent);
     // console.log(isSafari, isFirefox);
 
-    if (isSafari || isFirefox) {
+    // console.log(window.matchMedia("(display-mode: standalone)"));
+
+    if (
+      (!window.matchMedia("(display-mode: standalone)").matches && isSafari) ||
+      isFirefox
+    ) {
       setShowAddToHomeMessage(true);
     }
+
+    // if (isSafari || isFirefox) {
+    //   setShowAddToHomeMessage(true);
+    // }
   }, []);
 
   // Check if user is visiting the website from a mobile browser
