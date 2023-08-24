@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 import AddToIosSafari from "./AddToIosSafari";
 import AddToMobileChrome from "./AddToMobileChrome";
@@ -24,13 +25,13 @@ export default function AddToHomeScreen() {
     // Create date 1 year from now
     const date = new Date();
     date.setFullYear(date.getFullYear() + 1);
-    // setCookie(COOKIE_NAME, "dontShow", { expires: date }); // Set cookie for a year
+    Cookies.set(COOKIE_NAME, "dontShow", { expires: date });
     setDisplayPrompt("");
   };
 
   useEffect(() => {
-    // const addToHomeScreenPromptCookie = getCookie(COOKIE_NAME);
-    const addToHomeScreenPromptCookie = "";
+    const addToHomeScreenPromptCookie = Cookies.get(COOKIE_NAME);
+    // const addToHomeScreenPromptCookie = "";
 
     if (addToHomeScreenPromptCookie !== "dontShow") {
       // Only show prompt if user is on mobile and app is not installed
