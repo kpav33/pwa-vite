@@ -18,5 +18,6 @@ module.exports = {
     ],
     // Set to off because it annoys me
     "no-unused-vars": "off",
+    "react/prop-types": "off",
   },
 };

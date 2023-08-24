@@ -13,6 +13,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Hi from "./pages/hi/[name]";
 import ErrorPage from "./components/Error/ErrorPage";
+import Prompt from "./pages/Prompt";
 
 // https://adueck.github.io/blog/caching-everything-for-totally-offline-pwa-vite-react/
 // yarn create vite my-pwa --template react
@@ -158,6 +159,7 @@ function App() {
             <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
             <Link to="/hi/user">Hi user</Link>
+            <Link to="/prompt">Prompt</Link>
           </ul>
         </nav>
 
@@ -169,6 +171,8 @@ function App() {
           <Route path="/hi">
             <Route path=":name" element={<Hi />} />
           </Route>
+          <Route path="/prompt" element={<Prompt />} />
+
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
