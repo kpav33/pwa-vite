@@ -1,17 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
+
+<!-- PWA Minimal Requirements  -->
+<!-- <head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>My Awesome App</title>
+  <meta name="description" content="My Awesome App description">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+  <link rel="mask-icon" href="/mask-icon.svg" color="#FFFFFF">
+  <meta name="theme-color" content="#ffffff">
+</head> -->
+
 <html lang="en">
   <head>
-    <!-- <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- You need theme color property set both in the manifest and the Head of the HTML file for the Lighthouse warning to go away -->
-    <meta name="theme-color" content="#f69435"/>
-    <!-- <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png">
-    <title>Vite + React</title> -->
+    <meta name="theme-color" content="#f69435" />
 
     <!-- Use react helmet package for meta tags instead? -->
 
@@ -25,23 +30,28 @@
     <meta name="twitter:title" content="PWA App" />
     <meta name="twitter:description" content="Short app description" />
     <meta name="twitter:image" content="/icon-512x512.png" />
-    <meta property="twitter:domain" content="pwa-vite-example-site.netlify.app" />
-    <meta property="twitter:url" content="https://pwa-vite-example-site.netlify.app/" />
+    <meta
+      property="twitter:domain"
+      content="pwa-vite-example-site.netlify.app"
+    />
+    <meta
+      property="twitter:url"
+      content="https://pwa-vite-example-site.netlify.app/"
+    />
 
     <meta property="og:title" content="PWA App" />
     <meta property="og:description" content="Short app description" />
     <meta property="og:image" content="/icon-512x512.png" />
-    <meta property="og:url" content="https://pwa-vite-example-site.netlify.app/" />
+    <meta
+      property="og:url"
+      content="https://pwa-vite-example-site.netlify.app/"
+    />
     <meta property="og:type" content="website" />
 
     <!-- One webmanifest already set in vite.config.js file, add a separate one as well, that is generated via the favicon generator? -->
     <!-- <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#fff" /> -->
-    <link
-      rel="mask-icon"
-      href="/apple-touch-icon-180x180.png"
-      color="black"
-    />
+    <link rel="mask-icon" href="/apple-touch-icon-180x180.png" color="black" />
 
     <meta property="og:site_name" content="PWA App" />
     <meta name="twitter:image:alt" content="Short app description" />

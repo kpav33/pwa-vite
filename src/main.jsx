@@ -5,7 +5,8 @@ import "./index.css";
 import { registerSW } from "virtual:pwa-register";
 import { BrowserRouter } from "react-router-dom";
 
-// add this to prompt for a refresh
+// // add this to prompt for a refresh
+// The disadvantage of using this behavior is that the user can lose data in any browser windows/tabs in which the application is open and is filling in a form.
 const updateSW = registerSW({
   onNeedRefresh() {
     if (confirm("New content available. Reload?")) {

@@ -24,7 +24,7 @@ import Prompt from "./pages/Prompt";
 
 // https://github.com/vite-pwa/vite-plugin-pwa/tree/main/examples/react-router Official Vite PWA with React Router example
 
-// https://vite-pwa-org.netlify.app/guide/, https://css-tricks.com/vitepwa-plugin-offline-service-worker/ => Useful PWA explanations
+// https://vite-pwa-org.netlify.app/guide/, https://css-tricks.com/vitepwa-plugin-offline-service-worker/, https://docs.elk.zone/pwa, https://web.dev/learn/pwa/ => Useful PWA explanations
 
 // Use @vite-pwa/assets-generator to generate the necessary image assets check the https://vite-pwa-org.netlify.app/assets-generator/ to see how it works
 
